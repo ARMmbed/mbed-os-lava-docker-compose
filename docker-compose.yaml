@@ -76,12 +76,17 @@ services:
 
   apache2:
     image: ${DC_SERVER_IMAGE}
+    build:
+      context: ./apache2
+      args:
+        image: ${DC_SERVER_IMAGE}
     volumes:
     - ./overlays/etc/apache2/sites-available/lava-server.conf:/etc/apache2/sites-available/lava-server.conf:ro
     environment:
       SERVICES: "apache2"
     ports:
     - 80:80
+    - 443:443
     restart: unless-stopped
 
   lava-dispatcher:
