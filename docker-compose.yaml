@@ -39,6 +39,10 @@ services:
 
   lava-server:
     image: ${DC_SERVER_IMAGE}
+    build:
+      context: ./server
+      args:
+        image: ${DC_SERVER_IMAGE}
     volumes:
     - device-types:/etc/lava-server/dispatcher-config/device-types
     - devices:/etc/lava-server/dispatcher-config/devices
